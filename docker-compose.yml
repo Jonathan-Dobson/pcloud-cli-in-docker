@@ -1,0 +1,17 @@
+services:
+  pcloud:
+    build: ./
+    devices:
+      - /dev/fuse:/dev/fuse:rwm
+    cap_add:
+      - SYS_ADMIN
+    security_opt:
+      - apparmor:unconfined
+    entrypoint: "/root/credentials"
+    healthcheck:
+      test: "/root/healthcheck"
+      interval: 6s
+      timeout: 4s
+      retries: 3
+      start_period: 8s
+
